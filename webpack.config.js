@@ -6,7 +6,8 @@ module.exports = {
     entry: path.resolve(__dirname, "src/index.js"),
     output: {
         path: path.resolve(__dirname, "dist"),
-        filename: "main.js",
+        filename: "[name][contenthash].js",
+        clean: true,
     },
     module: {
         rules: [
@@ -22,4 +23,13 @@ module.exports = {
             template: "src/index.html",
         }),
     ],
+    devServer: {
+        static: {
+            directory: path.join(__dirname, "dist"),
+        },
+        compress: true,
+        port: 3000,
+        open: true,
+    },
+    devtool: "source-map",
 };
